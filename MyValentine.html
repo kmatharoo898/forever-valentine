@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preet 💚 Forever Valentine</title>
+
+<style>
+body {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 100vh;
+margin: 0;
+background: linear-gradient(135deg, #ffe4e1, #d4f8e8);
+font-family: Arial, sans-serif;
+text-align: center;
+overflow: hidden;
+}
+
+h1 {
+color: #d63384;
+font-size: 28px;
+text-shadow: 0 0 10px rgba(0,255,100,0.3);
+}
+
+.emoji {
+font-size: 100px;
+animation: bounce 1.5s infinite;
+margin: 20px 0;
+}
+
+@keyframes bounce {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-15px); }
+}
+
+button {
+padding: 12px 30px;
+font-size: 18px;
+border-radius: 30px;
+border: none;
+cursor: pointer;
+margin: 10px;
+transition: transform 0.2s ease;
+}
+
+#yesBtn {
+background: #28a745;
+color: white;
+}
+
+#noBtn {
+background: gray;
+color: white;
+position: absolute;
+}
+
+/* Floating hearts */
+.heart {
+position: absolute;
+animation: float 6s linear infinite;
+}
+
+@keyframes float {
+0% { transform: translateY(100vh); opacity: 1; }
+100% { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="question">Preet 💚, will you be my forever Valentine? </h1>
+
+<div id="emoji" class="emoji">🌹💚</div>
+
+<button id="yesBtn">Yes!</button>
+<button id="noBtn">No</button>
+
+<script>
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+const question = document.getElementById('question');
+const emoji = document.getElementById('emoji');
+
+let yesScale = 1;
+
+function moveButton() {
+const x = Math.random() * (window.innerWidth - 100);
+const y = Math.random() * (window.innerHeight - 100);
+noBtn.style.left = x + "px";
+noBtn.style.top = y + "px";
+
+yesScale += 0.1;
+yesBtn.style.transform = "scale(" + yesScale + ")";
+}
+
+noBtn.addEventListener("mouseover", moveButton);
+
+yesBtn.addEventListener("click", function() {
+question.innerHTML = "Yay! Forever starts now 💚<br>Hun tu officially ban gi meri jaan 😌🌹";
+emoji.innerHTML = "💍💚✨";
+noBtn.style.display = "none";
+});
+
+/* Floating hearts generator */
+setInterval(() => {
+const heart = document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML = "💚";
+heart.style.left = Math.random() * 100 + "vw";
+heart.style.fontSize = Math.random() * 20 + 15 + "px";
+document.body.appendChild(heart);
+
+setTimeout(() => {
+heart.remove();
+}, 6000);
+}, 500);
+</script>
+
+</body>
+</html>
+
+
+
